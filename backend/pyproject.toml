@@ -1,0 +1,15 @@
+[project]
+name = "plainspeak-backend"
+version = "0.1.0"
+requires-python = ">=3.11"
+
+[tool.pytest.ini_options]
+pythonpath = ["."]
+testpaths = ["tests"]
+
+[tool.pyright]
+venvPath = "."
+venv = ".venv"
+pythonVersion = "3.11"
+include = ["app", "tests"]
+typeCheckingMode = "standard"
