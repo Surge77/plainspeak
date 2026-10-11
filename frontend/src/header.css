@@ -1,0 +1,110 @@
+/* Site chrome: header (nav) and footer. Imported by index.css. */
+
+@layer components {
+  /* Nav: sticky on solid paper. The hairline appears only once the page has scrolled,
+     so it reports state instead of decorating the top of an unscrolled page. */
+  .site-header {
+    position: sticky;
+    top: 0;
+    z-index: 20;
+    background: var(--paper);
+    transition: box-shadow 200ms ease;
+  }
+  .site-header[data-scrolled] {
+    box-shadow: 0 1px 0 var(--rule);
+  }
+  .brand {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.2rem;
+    letter-spacing: -0.02em;
+  }
+  .brand-mark {
+    width: 1.6rem;
+    height: 1.6rem;
+    flex-shrink: 0;
+    transform: rotate(-6deg);
+  }
+  .nav-button,
+  .icon-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 2.75rem;
+    border-radius: 999px;
+    color: var(--ink);
+    transition: background-color 150ms ease;
+  }
+  .nav-button {
+    gap: 0.45rem;
+    padding: 0 0.85rem;
+    font-weight: 700;
+  }
+  .icon-button {
+    width: 2.75rem;
+  }
+  .nav-button:hover,
+  .icon-button:hover {
+    background: var(--sheet);
+  }
+  .icon-button svg {
+    transition: transform 300ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .icon-button:active svg {
+    transform: rotate(-25deg) scale(0.9);
+  }
+  /* A pocket copy of the name tag: same sticker, same marker, same tilt. */
+  .mini-tag {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.4rem;
+    max-width: min(15rem, 44vw);
+    height: 2.4rem;
+    padding: 0 0.7rem;
+    /* The red band is painted, not a border, so it follows the rounded corners. */
+    background: linear-gradient(var(--tag-red) 0 5px, var(--tag-card) 5px);
+    color: var(--marker);
+    padding-top: 5px;
+    border-radius: 8px;
+    transform: rotate(-1.5deg);
+    box-shadow: 0 6px 12px -8px rgb(27 36 48 / 0.55);
+    transition: transform 200ms cubic-bezier(0.2, 0.7, 0.2, 1);
+  }
+  .mini-tag:hover {
+    transform: rotate(0deg) translateY(-1px);
+  }
+  .mini-tag-role {
+    font-family: var(--font-marker);
+    font-size: 0.95rem;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+  @media (max-width: 639px) {
+    .brand-compact .brand-name {
+      display: none;
+    }
+    .nav-button {
+      padding: 0 0.6rem;
+    }
+  }
+
+  /* Footer: centred on the same frame as the page, set off by a hairline. */
+  .site-footer {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-top: 1px solid var(--rule);
+    padding: 1.25rem 0 1.75rem;
+    font-size: 0.875rem;
+    color: var(--muted);
+    text-align: center;
+  }
+  .site-footer svg {
+    flex-shrink: 0;
+  }
+}

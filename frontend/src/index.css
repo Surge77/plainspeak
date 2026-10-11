@@ -1,0 +1,136 @@
+@import "tailwindcss";
+@import "./components.css";
+@import "./header.css";
+
+/* Tokens. Two colours carry meaning across the whole page:
+   red  = the role (name tag, "Role prompt" in the prompt viewer)
+   amber = a dynamic slot (the sentence blanks, "Dynamic slot" in the prompt viewer) */
+:root {
+  --paper: #eef2f5;
+  --sheet: #f8fafb;
+  --ink: #1b2430;
+  --muted: #5b6776;
+  --rule: #d3dae2;
+  --term: #d6e4f7;
+  --focus: #2f6fde;
+  --tag-red: #d7263d;
+  --tag-card: #fbfcfd;
+  --marker: #1e3a8a;
+  --t-role: #d7263d;
+  --t-task: #2f6fde;
+  --t-slot: #b7791f;
+  --t-format: #2f855a;
+  --t-fewshot: #7c4dcc;
+  --t-guard: #5b6776;
+  color-scheme: light;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #121922;
+    --sheet: #18212c;
+    --ink: #e4e9ef;
+    --muted: #9aa6b4;
+    --rule: #2a3644;
+    --term: #22406a;
+    --focus: #7fa7ff;
+    --t-role: #ff5a6e;
+    --t-task: #7fa7ff;
+    --t-slot: #e2b04a;
+    --t-format: #5bc48e;
+    --t-fewshot: #b08cff;
+    --t-guard: #9aa6b4;
+    color-scheme: dark;
+  }
+}
+
+:root[data-theme="dark"] {
+  --paper: #121922;
+  --sheet: #18212c;
+  --ink: #e4e9ef;
+  --muted: #9aa6b4;
+  --rule: #2a3644;
+  --term: #22406a;
+  --focus: #7fa7ff;
+  --t-role: #ff5a6e;
+  --t-task: #7fa7ff;
+  --t-slot: #e2b04a;
+  --t-format: #5bc48e;
+  --t-fewshot: #b08cff;
+  --t-guard: #9aa6b4;
+  color-scheme: dark;
+}
+
+@theme inline {
+  --color-paper: var(--paper);
+  --color-sheet: var(--sheet);
+  --color-ink: var(--ink);
+  --color-muted: var(--muted);
+  --color-rule: var(--rule);
+  --color-tag: var(--t-role);
+  --font-display: "Bricolage Grotesque", ui-sans-serif, system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", ui-sans-serif, system-ui, sans-serif;
+  --font-marker: "Permanent Marker", "Segoe Print", cursive;
+  --font-mono: ui-monospace, "Cascadia Code", Consolas, monospace;
+}
+
+html {
+  /* Keeps focus jumps and anchor scrolls clear of the sticky header. */
+  scroll-padding-top: 5rem;
+  scrollbar-color: var(--rule) transparent;
+}
+
+::selection {
+  background: var(--term);
+  color: var(--ink);
+}
+
+body {
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 1.0625rem;
+  line-height: 1.6;
+}
+
+:focus-visible {
+  outline: 3px solid var(--focus);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
+/* The one orchestrated moment: the expert's title is written onto the blank tag. */
+@media (prefers-reduced-motion: no-preference) {
+  /* Answers the reader scrolling away: the tag drops into the nav. */
+  .mini-tag {
+    animation: tag-drop 320ms cubic-bezier(0.2, 0.8, 0.2, 1) backwards;
+  }
+  .write-in {
+    animation: write-in 750ms cubic-bezier(0.3, 0.7, 0.2, 1) both;
+  }
+  .placeholder-line {
+    animation: breathe 1.4s ease-in-out infinite;
+  }
+}
+
+@keyframes tag-drop {
+  from {
+    opacity: 0;
+    transform: translateY(-10px) rotate(-6deg);
+  }
+}
+
+@keyframes write-in {
+  from {
+    clip-path: inset(0 100% 0 0);
+  }
+  to {
+    clip-path: inset(0 0 0 0);
+  }
+}
+
+@keyframes breathe {
+  50% {
+    opacity: 0.45;
+  }
+}
