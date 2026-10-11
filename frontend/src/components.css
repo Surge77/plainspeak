@@ -1,0 +1,266 @@
+/* Component classes. Imported by index.css; split out to keep each file under 300 lines. */
+
+@layer components {
+  /* The sentence blanks: an amber underline marks every dynamic slot. */
+  .slot {
+    appearance: none;
+    background: transparent;
+    border: 0;
+    border-bottom: 3px solid var(--t-slot);
+    border-radius: 0;
+    color: inherit;
+    font: inherit;
+    padding: 0 0.15em;
+    cursor: pointer;
+    caret-color: var(--t-slot);
+    /* Size each blank to its current value, not its widest option. Browsers without
+       support fall back to the native width, which is merely roomier. */
+    field-sizing: content;
+  }
+  select.slot {
+    padding-right: 1.1em;
+    background-image: linear-gradient(45deg, transparent 50%, var(--t-slot) 50%),
+      linear-gradient(135deg, var(--t-slot) 50%, transparent 50%);
+    background-position: right 0.35em top 55%, right 0.05em top 55%;
+    background-size: 0.3em 0.3em;
+    background-repeat: no-repeat;
+  }
+  select.slot option {
+    font-size: 1rem;
+    color: var(--ink);
+    background: var(--sheet);
+  }
+  .slot-input {
+    cursor: text;
+    max-width: 100%;
+  }
+  .slot-input::placeholder {
+    color: var(--muted);
+    opacity: 0.55;
+  }
+
+  .btn-primary {
+    background: var(--ink);
+    color: var(--paper);
+    border-radius: 999px;
+    padding: 0.8rem 1.6rem;
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: 1.05rem;
+    transition: transform 120ms ease;
+  }
+  .btn-primary:active:not(:disabled) {
+    transform: translateY(1px);
+  }
+  .btn-secondary {
+    border: 1.5px solid var(--rule);
+    border-radius: 999px;
+    padding: 0.45rem 1.1rem;
+    font-weight: 700;
+    background: var(--sheet);
+  }
+  .btn-secondary:hover {
+    border-color: var(--muted);
+  }
+  .btn-primary:disabled,
+  .link-button:disabled {
+    opacity: 0.45;
+    cursor: progress;
+  }
+  .link-button {
+    color: var(--ink);
+    text-decoration: underline;
+    text-decoration-color: var(--rule);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 4px;
+  }
+  .link-button:hover:not(:disabled) {
+    text-decoration-color: var(--ink);
+  }
+  .field {
+    border: 1.5px solid var(--rule);
+    border-radius: 8px;
+    background: var(--sheet);
+    padding: 0.45rem 0.75rem;
+    min-width: 14rem;
+  }
+
+  /* The name tag: a physical sticker, so it stays white in dark mode too. */
+  .nametag {
+    width: min(100%, 21rem);
+    flex-shrink: 0;
+    background: var(--tag-card);
+    border-radius: 16px;
+    overflow: hidden;
+    transform: rotate(-1.5deg);
+    box-shadow:
+      0 1px 0 rgb(27 36 48 / 0.08),
+      0 18px 30px -18px rgb(27 36 48 / 0.55);
+  }
+  .nametag-band {
+    background: var(--tag-red);
+    color: #fff;
+    text-align: center;
+    padding: 0.7rem 1rem 0.55rem;
+    display: flex;
+    flex-direction: column;
+    line-height: 1;
+  }
+  .nametag-hello {
+    font-family: var(--font-display);
+    font-weight: 800;
+    font-size: 2.25rem;
+    letter-spacing: 0.01em;
+  }
+  .nametag-sub {
+    font-size: 0.95rem;
+    margin-top: 0.3rem;
+  }
+  .nametag-body {
+    min-height: 6.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+    padding: 1rem 1.25rem 1.25rem;
+  }
+  .nametag-role {
+    font-family: var(--font-marker);
+    color: var(--marker);
+    font-size: clamp(1.5rem, 4.5vw, 2.1rem);
+    line-height: 1.15;
+    text-align: center;
+  }
+  .nametag-blank {
+    display: block;
+    width: 70%;
+    border-bottom: 2px dashed #c3ccd6;
+    height: 2.2rem;
+  }
+
+  /* Shared page frame: header, hero, results and footer line up on one edge. */
+  .frame {
+    width: 100%;
+    max-width: 72rem;
+    margin-inline: auto;
+    padding-inline: 1.25rem;
+  }
+  @media (min-width: 640px) {
+    .frame {
+      padding-inline: 2rem;
+    }
+  }
+  .result-grid {
+    display: grid;
+    gap: 2.5rem;
+    border-top: 1px solid var(--rule);
+    padding-top: 2.5rem;
+  }
+  @media (min-width: 1024px) {
+    .result-grid {
+      grid-template-columns: minmax(16rem, 19rem) minmax(0, 1fr);
+      gap: 4.5rem;
+    }
+    .result-rail {
+      position: sticky;
+      top: 6rem;
+      align-self: start;
+    }
+  }
+  .sheet {
+    max-width: 68ch;
+  }
+  .sheet-part + .sheet-part,
+  .sheet-part + .summary {
+    margin-top: 2.25rem;
+  }
+  .sheet-heading {
+    font-family: var(--font-display);
+    font-weight: 700;
+    font-size: 1.05rem;
+    margin-bottom: 0.5rem;
+  }
+  .code-block {
+    font-family: var(--font-mono);
+    font-size: 0.95rem;
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    border-radius: 8px;
+    padding: 1rem 1.1rem;
+    overflow-x: auto;
+    white-space: pre;
+  }
+  .term {
+    background: var(--term);
+    color: inherit;
+    font-weight: 700;
+    padding: 0.05em 0.35em;
+    border-radius: 4px;
+  }
+  .summary {
+    border-top: 3px solid var(--ink);
+    padding-top: 1rem;
+  }
+
+  .notice {
+    margin-top: 1rem;
+    max-width: 60ch;
+    background: var(--sheet);
+    border: 1px solid var(--rule);
+    padding: 1.1rem 1.25rem;
+    border-radius: 12px;
+  }
+  .notice-error {
+    border-color: var(--t-role);
+  }
+
+  .placeholder-line {
+    height: 0.9rem;
+    border-radius: 999px;
+    background: var(--rule);
+  }
+
+  .prompt-panel {
+    margin-top: 2rem;
+    padding-top: 1.75rem;
+    border-top: 1px solid var(--rule);
+  }
+  .tab {
+    padding: 0.5rem 0.9rem;
+    margin-bottom: -1px;
+    border-bottom: 3px solid transparent;
+    color: var(--muted);
+    font-weight: 700;
+  }
+  .tab[aria-selected="true"] {
+    color: var(--ink);
+    border-bottom-color: var(--ink);
+  }
+  .segment {
+    background: var(--sheet);
+    border-radius: 8px;
+    padding: 0.7rem 1rem;
+  }
+  /* The technique colour lives in a swatch before the label (set inline as color). */
+  .segment-label {
+    display: flex;
+    align-items: center;
+    gap: 0.45rem;
+    font-size: 0.85rem;
+    font-weight: 700;
+    margin-bottom: 0.2rem;
+  }
+  .segment-label::before {
+    content: "";
+    width: 0.6rem;
+    height: 0.6rem;
+    border-radius: 2px;
+    background: currentColor;
+  }
+  .segment-text {
+    font-family: var(--font-mono);
+    font-size: 0.88rem;
+    white-space: pre-wrap;
+    overflow-wrap: anywhere;
+  }
+}
