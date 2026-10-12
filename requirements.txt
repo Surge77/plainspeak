@@ -1,0 +1,2 @@
+# Vercel installs Python dependencies from the repo root; the pins live in backend/.
+-r backend/requirements.txt
