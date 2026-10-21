@@ -1,0 +1,15 @@
+# Secrets: the key is set as a Vercel environment variable instead.
+.env
+**/.env
+
+# Local build and tool output
+**/.venv
+**/node_modules
+**/__pycache__
+**/.pytest_cache
+**/.ruff_cache
+**/coverage
+**/htmlcov
+.coverage
+frontend/dist
+*.stackdump

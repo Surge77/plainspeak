@@ -12,3 +12,5 @@ htmlcov/
 node_modules/
 frontend/dist/
 coverage/
+
+.vercel
